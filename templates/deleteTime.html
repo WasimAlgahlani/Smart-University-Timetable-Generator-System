@@ -1,0 +1,53 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('delete_time') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">حذف لمدرس</h1>
+
+      <label class="lab">اسم المدرس</label>
+      <div class="form-floating">
+      <select name="tName" class="form-control" id="floatingType">
+          {% for t in all_teachers %}
+              {% if t.contract == "متعاقد" %}
+          <option>{{ t.teach_name }}</option>
+              {% endif %}
+          {% endfor %}
+      </select>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">حذف</button>
+  </form>
+        <article class="data">
+        {% if all_times != [] %}
+            <h2>أوقات المدرسين</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+          <th>
+                اسم المدرس
+            </th>
+                  <th>
+                وقت التواجد
+            </th>
+        <tr>
+        {% for ti in all_times %}
+                <td>{{ ti.time_id }}</td>
+                {% for t in all_teachers %}
+                    {% if t.contract == "متعاقد" %}
+                    {% if t.teach_id == ti.teacher %}
+                    <td>{{ t.teach_name }}</td>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ ti.ava }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

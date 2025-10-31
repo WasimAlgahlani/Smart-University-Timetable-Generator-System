@@ -1,0 +1,72 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('add_major') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">إضافة تخصص</h1>
+
+      <label class="lab">اسم الكلية</label>
+      <div class="form-floating">
+      <select name="cName" class="form-control" id="floatingType">
+          {% for c in all_colls %}
+          <option>{{ c.coll_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+   <label class="lab">اسم القسم</label>
+      <div class="form-floating">
+      <select name="dName" class="form-control" id="floatingType">
+          {% for d in all_depts %}
+              {% for c in all_colls %}
+                  {% if d.coll == c.coll_id %}
+          <option>{{ d.dept_name }}</option>
+                  {% endif %}
+                  {% endfor %}
+          {% endfor %}
+      </select>
+    </div>
+    <div class="form-floating">
+      <input type="text" autocomplete="off" class="form-control" name="mName" id="floatingInput" placeholder="اسم التخصص" required>
+      <label for="floatingInput">اسم التخصص</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">إضافة</button>
+  </form>
+        <article class="data">
+        {% if all_majors != [] %}
+            <h2>التخصصات</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                الكلية
+            </th>
+          <th>
+                اسم القسم
+            </th>
+                          <th>
+                اسم التخصص
+            </th>
+        <tr>
+        {% for m in all_majors %}
+                <td>{{ m.major_id }}</td>
+                {% for c in all_colls %}
+                    {% if c.coll_id == m.coll %}
+                    <td>{{ c.coll_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+             {% for d in all_depts %}
+                    {% if d.dept_id == m.dept%}
+                    <td>{{ d.dept_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ m.maj_name }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

@@ -1,0 +1,49 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+<div id="bl">
+  <form action="{{ url_for('create_table') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">إنشاء جدول</h1>
+
+      <label class="lab">اسم الكلية</label>
+        <div class="form-floating">
+      <select name="cName" class="form-control" id="floatingType">
+          {% for c in all_colls %}
+          <option>{{ c.coll_name}}</option>
+          {% endfor %}
+      </select>
+    </div>
+  <label class="lab te">الترم</label>
+   <div class="form-floating">
+       <div class="term-r">
+      1<input type="radio" name="tName" class="term-r " id="t1" required value="1">
+
+       2<input type="radio" name="tName" id="t2" class="term-r" required value="2" checked>
+       </div>
+
+    <button class="w-100 btn btn-lg btn-primary" id="di" type="submit" onclick="dis()">إنشاء</button>
+   </div>
+  </form>
+</div>
+<div class="container">
+<div class="loader"></div>
+</div>
+<div class="container">
+    <h6 class="tab">الجدول قيد الإنشاء</h6>
+</div>
+<script>
+    function dis(){
+        let b = document.getElementById('di').classList.add("disa");
+
+         let x = document.getElementsByClassName("container");
+        for (let i = 0; i < x.length; i++) {
+            x[i].style.display = 'block !important';
+            x[i].style.display = 'flex';
+}}
+</script>
+
+</main>
+
+</aside>
+{% include 'footer.html' %}

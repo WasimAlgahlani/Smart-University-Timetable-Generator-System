@@ -1,0 +1,209 @@
+<!doctype html>
+<html dir="rtl" lang="ar">
+  <head>
+      <title>STGS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ 
+<link href="../static/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="../static/css/header.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+<main class="d-flex flex-nowrap">
+  <h1 class="visually-hidden">Sidebars examples</h1>
+
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <span class="fs-4 tit" dir="ltr">النظام الذكي لإنشاء الجداول</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+         <li class="nav-item">
+        <a href="{{ url_for('regular') }}" class="nav-link active" aria-current="page">
+            الرئيسية
+        </a>
+      </li>
+       <li class="nav-item">
+        <a href="#" class="nav-link  btn-toggle" data-bs-toggle="collapse" data-bs-target="#coll-collapse" aria-expanded="true" aria-current="page">
+          الكليات
+        </a>
+          <div class="collapse hiding" id="coll-collapse">
+          <ul class="nav nav-pills flex-column mb-auto btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{{ url_for('add_coll') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">إضافة كلية</a></li>
+            <li><a href="{{ url_for('update_coll') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">تعديل بيانات كلية</a></li>
+            <li><a href="{{ url_for('delete_coll') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">حذف كلية</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link  btn-toggle" data-bs-toggle="collapse" data-bs-target="#dept-collapse" aria-expanded="true" aria-current="page">
+          الأقسام
+        </a>
+          <div class="collapse hiding" id="dept-collapse">
+          <ul class="nav nav-pills flex-column mb-auto btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{{ url_for('add_dept') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">إضافة قسم</a></li>
+            <li><a href="{{ url_for('update_dept') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">تعديل بيانات قسم</a></li>
+            <li><a href="{{ url_for('delete_dept') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">حذف قسم</a></li>
+          </ul>
+        </div>
+      </li>
+       <li class="nav-item">
+        <a href="#" class="nav-link  btn-toggle" data-bs-toggle="collapse" data-bs-target="#maj-collapse" aria-expanded="true" aria-current="page">
+          التخصصات
+        </a>
+          <div class="collapse hiding" id="maj-collapse">
+          <ul class="nav nav-pills flex-column mb-auto btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="{{ url_for('add_major') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">إضافة تخصص</a></li>
+            <li><a href="{{ url_for('update_major') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">تعديل بيانات تخصص</a></li>
+            <li><a href="{{ url_for('delete_major') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">حذف تخصص</a></li>
+          </ul>
+        </div>
+      </li>
+         <li class="nav-item">
+        <a href="#" class="nav-link  btn-toggle" data-bs-toggle="collapse" data-bs-target="#sub-collapse" aria-expanded="true" aria-current="page">
+          المواد
+        </a>
+          <div class="collapse hiding" id="sub-collapse">
+          <ul class="nav nav-pills flex-column mb-auto btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{{ url_for('add_sub') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">إضافة مادة</a></li>
+            <li><a href="{{ url_for('update_sub') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">تعديل بيانات مادة</a></li>
+            <li><a href="{{ url_for('delete_sub') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">حذف مادة</a></li>
+          </ul>
+        </div>
+      </li>
+        <li class="nav-item">
+        <a href="#" class="nav-link  btn-toggle" data-bs-toggle="collapse" data-bs-target="#room-collapse" aria-expanded="true" aria-current="page">
+          القاعات
+        </a>
+          <div class="collapse hiding" id="room-collapse">
+          <ul class="nav nav-pills flex-column mb-auto btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{{ url_for('add_room') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">إضافة قاعة</a></li>
+            <li><a href="{{ url_for('update_room') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">تعديل بيانات قاعة</a></li>
+            <li><a href="{{ url_for('delete_room') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">حذف قاعة</a></li>
+          </ul>
+        </div>
+      </li>
+        <li class="nav-item">
+        <a href="#" class="nav-link  btn-toggle" data-bs-toggle="collapse" data-bs-target="#tea-collapse" aria-expanded="true" aria-current="page">
+          المدرسين
+        </a>
+          <div class="collapse hiding" id="tea-collapse">
+          <ul class="nav nav-pills flex-column mb-auto btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{{ url_for('add_teacher') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">إضافة مدرس</a></li>
+            <li><a href="{{ url_for('update_teacher') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">تعديل بيانات مدرس</a></li>
+            <li><a href="{{ url_for('delete_teacher') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">حذف مدرس</a></li>
+          </ul>
+        </div>
+      </li>
+         <li class="nav-item">
+        <a href="#" class="nav-link  btn-toggle" data-bs-toggle="collapse" data-bs-target="#tea-sub-collapse" aria-expanded="true" aria-current="page">
+            مدرسين المواد
+        </a>
+          <div class="collapse hiding" id="tea-sub-collapse">
+          <ul class="nav nav-pills flex-column mb-auto btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{{ url_for('add_teacher_subject') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">إضافة مادة لمدرس</a></li>
+            <li><a href="{{ url_for('update_teacher_subject') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">تعديل مادة مدرس</a></li>
+            <li><a href="{{ url_for('delete_teacher_subject') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">حذف مادة مدرس</a></li>
+          </ul>
+        </div>
+      </li>
+         <li class="nav-item">
+        <a href="#" class="nav-link  btn-toggle" data-bs-toggle="collapse" data-bs-target="#stu-collapse" aria-expanded="true" aria-current="page">
+            عدد طلاب التخصصات
+        </a>
+          <div class="collapse hiding" id="stu-collapse">
+          <ul class="nav nav-pills flex-column mb-auto btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{{ url_for('add_student') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">إضافة عدد طلاب</a></li>
+            <li><a href="{{ url_for('update_student') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">تعديل عدد طلاب</a></li>
+            <li><a href="{{ url_for('delete_student') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">حذف عدد طلاب</a></li>
+          </ul>
+        </div>
+      </li>
+
+        <li class="nav-item">
+        <a href="#" class="nav-link  btn-toggle" data-bs-toggle="collapse" data-bs-target="#teaTimes-collapse" aria-expanded="true" aria-current="page">
+          أوقات المدرسين
+        </a>
+          <div class="collapse hiding" id="teaTimes-collapse">
+          <ul class="nav nav-pills flex-column mb-auto btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="{{ url_for('add_time') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">إضافة وقت لمدرس</a></li>
+            <li><a href="{{ url_for('update_time') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">تعديل  وقت مدرس</a></li>
+            <li><a href="{{ url_for('delete_time') }}" class="nav-link d-inline-flex text-decoration-none rounded sub">حذف وقت مدرس</a></li>
+          </ul>
+        </div>
+      </li>
+        <li class="nav-item">
+        <a href="{{ url_for('create_table') }}" class="nav-link ta" aria-current="page">
+            إنشاء جدول
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <strong>profile</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#">الصفحة الشخصية</a></li>
+{#        <li><hr class="dropdown-divider"></li>#}
+        <li><a class="dropdown-item" href="{{ url_for('main_screen') }}">خروج</a></li>
+      </ul>
+    </div>
+  </div>

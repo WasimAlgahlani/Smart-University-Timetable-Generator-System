@@ -1,0 +1,83 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('update_time') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">تعديل وقت لمدرس</h1>
+
+      <label class="lab">اسم المدرس</label>
+      <div class="form-floating">
+      <select name="tName" class="form-control" id="floatingType">
+          {% for t in all_teachers %}
+              {% if t.contract == "متعاقد" %}
+          <option>{{ t.teach_name }}</option>
+              {% endif %}
+          {% endfor %}
+      </select>
+    </div>
+
+  <label class="lab av">أوقات التواجد</label>
+  <div class="times">
+      <div class="times2">
+          <label class="lab day">السبت</label>
+      <input type="text" autocomplete="off" class="form-control timIn" name="sat" id="floatingInput" placeholder="8-10, 12-2" >
+  </div>
+      <div class="times2">
+          <label class="lab day">الأحد</label>
+      <input type="text" autocomplete="off" class="form-control timIn" name="sun" id="floatingInput" placeholder="8-10, 12-2">
+      </div>
+      <div class="times2">
+  <label class="lab day">الإثنين</label>
+      <input type="text" autocomplete="off" class="form-control timIn" name="mon" id="floatingInput" placeholder="8-10, 12-2">
+      </div>
+  </div>
+  <div class="times ti2">
+      <div class="times2">
+   <label class="lab day">الثلاثاء</label>
+      <input type="text" autocomplete="off" class="form-control timIn" name="tue" id="floatingInput" placeholder="8-10, 12-2">
+      </div>
+      <div class="times2">
+  <label class="lab day">الأربعاء</label>
+      <input type="text" autocomplete="off" class="form-control timIn" name="wen" id="floatingInput" placeholder="8-10, 12-2">
+      </div>
+      <div class="times2">
+    <label class="lab day">الخميس</label>
+      <input type="text" autocomplete="off" class="form-control timIn" name="thu" id="floatingInput" placeholder="8-10, 12-2">
+      </div>
+   </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">تعديل</button>
+  </form>
+        <article class="data">
+        {% if all_times != [] %}
+            <h2>أوقات المدرسين</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+          <th>
+                اسم المدرس
+            </th>
+                  <th>
+                وقت التواجد
+            </th>
+        <tr>
+        {% for ti in all_times %}
+                <td>{{ ti.time_id }}</td>
+                {% for t in all_teachers %}
+                    {% if t.contract == "متعاقد" %}
+                    {% if t.teach_id == ti.teacher %}
+                    <td>{{ t.teach_name }}</td>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ ti.ava }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

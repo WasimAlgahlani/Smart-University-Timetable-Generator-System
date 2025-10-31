@@ -1,0 +1,53 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('delete_teacher') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">حذف مدرس</h1>
+  
+   <label class="lab">اسم المدرس</label>
+      <div class="form-floating">
+      <select name="tName" class="form-control" id="floatingType">
+          {% for t in all_teachers %}
+          <option>{{ t.teach_name }}</option>
+          {% endfor %}
+      </select>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">حذف</button>
+      </div>
+  </form>
+        <article class="data">
+        {% if all_teachers != [] %}
+            <h2>المدرسين</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                الكلية
+            </th>
+          <th>
+                اسم المدرس
+            </th>
+                  <th>
+                نوع العقد
+            </th>
+        <tr>
+        {% for t in all_teachers %}
+                <td>{{ t.teach_id }}</td>
+                {% for c in all_colls %}
+                    {% if c.coll_id == t.coll %}
+                    <td>{{ c.coll_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ t.teach_name }}</td>
+            <td>{{ t.contract }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

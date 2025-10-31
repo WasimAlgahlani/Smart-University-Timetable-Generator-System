@@ -1,0 +1,75 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('update_teacher') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">تعديل بيانات مدرس</h1>
+
+   <label class="lab">اسم المدرس</label>
+      <div class="form-floating">
+      <select name="tName" class="form-control" id="floatingType">
+          {% for t in all_teachers %}
+          <option>{{ t.teach_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+      <label class="lab">اسم الكلية</label>
+      <div class="form-floating">
+      <select name="cName" class="form-control" id="floatingType">
+          {% for c in all_colls %}
+          <option>{{ c.coll_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+  <label class="lab">اسم المدرس الجديد</label>
+    <div class="form-floating">
+      <input type="text" autocomplete="off" class="form-control" name="newName" id="floatingInput" placeholder="اسم المدرس" required>
+      <label for="floatingInput">اسم المدرس</label>
+    </div>
+   <label class="lab">نوع العقد</label>
+      <div class="form-floating">
+      <select name="con" class="form-control" id="floatingType">
+          <option>مثبت</option>
+          <option>متعاقد</option>
+
+      </select>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">تعديل</button>
+      </div>
+  </form>
+        <article class="data">
+        {% if all_teachers != [] %}
+            <h2>المدرسين</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                الكلية
+            </th>
+          <th>
+                اسم المدرس
+            </th>
+                  <th>
+                نوع العقد
+            </th>
+        <tr>
+        {% for t in all_teachers %}
+                <td>{{ t.teach_id }}</td>
+                {% for c in all_colls %}
+                    {% if c.coll_id == t.coll %}
+                    <td>{{ c.coll_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ t.teach_name }}</td>
+            <td>{{ t.contract }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

@@ -1,0 +1,84 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('add_teacher_subject') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">إضافة مادة لمدرس</h1>
+
+   <label class="lab">اسم المادة</label>
+      <div class="form-floating">
+      <select name="sName" class="form-control" id="floatingType">
+          {% for s in all_subs %}
+          <option>{{ s }}</option>
+          {% endfor %}
+      </select>
+    </div>
+   <label class="lab">اسم المدرس</label>
+      <div class="form-floating">
+      <select name="tName" class="form-control" id="floatingType">
+          {% for t in all_teachers %}
+          <option>{{ t.teach_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+  <label class="lab te">نوع المحاضرة</label>
+       <div class="term-r">
+      نظري<input type="radio" name="rType" class="term-r " id="t1" required value="نظري" checked>
+
+       عملي<input type="radio" name="rType" id="t2" class="term-r" required value="عملي">
+       </div>
+        <div class ="te" >
+            <label class ="lab" > عدد الساعات</label>
+<div class ="form-floating" >
+<select name = "hName" class ="form-control" id="floatingType" >
+<option > 1 </option >
+<option > 2 </option >
+<option > 3 </option >
+</select >
+</div >
+</div >
+    <button class="w-100 btn btn-lg btn-primary" type="submit">إضافة</button>
+  </form>
+        <article class="data">
+        {% if all_tea_subs != [] %}
+            <h2>مدرسين المواد</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                اسم المدرس
+            </th>
+          <th>
+                اسم المادة
+            </th>
+            <th>
+                نوع المحاضرة
+            </th>
+         <th>
+               عدد الساعات
+            </th>
+        <tr>
+        {% for ts in all_tea_subs %}
+                <td>{{ ts.te_sub_id }}</td>
+                {% for t in all_teachers %}
+                    {% if t.teach_id == ts.teacher %}
+                    <td>{{ t.teach_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+             {% for s in all_subs2 %}
+                    {% if s.sub_id == ts.subject%}
+                    <td>{{ s.sub_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ ts.sub_type }}</td>
+            <td>{{ ts.sub_hours }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

@@ -1,0 +1,49 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('delete_room') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">حذف قاعة</h1>
+
+      <label class="lab">اسم القاعة</label>
+        <div class="form-floating">
+      <select name="rName" class="form-control" id="floatingType">
+          {% for r in all_rooms %}
+          <option>{{ r.room_name}}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">حذف</button>
+  </form>
+        <article class="data">
+                {% if all_rooms != [] %}
+            <h2>القاعات</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                اسم القاعة
+            </th>
+        <th>
+                نوع القاعة
+            </th>
+         <th>
+                الطاقة الاستيعابية
+            </th>
+        {% for r in all_rooms %}
+            <tr>
+                <td>{{ r.room_id}}</td>
+            <td>{{ r.room_name }}</td>
+                <td>{{ r.room_type }}</td>
+            <td>{{ r.capacity}}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

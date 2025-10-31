@@ -1,0 +1,73 @@
+{% include 'header2.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('update_user') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">تعديل بيانات مستخدم</h1>
+
+      <label class="lab">اسم المستخدم</label>
+        <div class="form-floating">
+      <select name="uName" class="form-control" id="floatingType">
+          {% for u in all_users %}
+          <option>{{  u.user_name}}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+      <label class="lab">اسم المستخدم الجديد</label>
+    <div class="form-floating">
+      <input type="text" autocomplete="off" class="form-control" name="newName" id="floatingText" placeholder="اسم المستخدم" required>
+      <label for="floatingText">اسم المستخدم</label>
+    </div>
+      <label class="lab">كلمة المرور الجديدة</label>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="uPass" id="floatingPassword" placeholder="كلمة المرور" required>
+      <label for="floatingPassword">كلمة المرور</label>
+    </div>
+              <label class="lab">نوع المستخدم</label>
+    <div class="form-floating">
+      <select name="uType" class="form-control" id="floatingType">
+          <option>مستخدم عادي</option>
+          <option>admin</option>
+      </select>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">تعديل</button>
+  </form>
+        <article class="data">
+        {% if all_users != [] %}
+                    <h2>المستخدمون</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+            اسم المستخدم
+            </th>
+            <th>
+            كلمة المرور
+            </th>
+            <th>
+            نوع المستخدم
+            </th>
+        {% for u in all_users %}
+            {% if   u.user_type != "admin"%}
+            <tr>
+                <td>{{ u.user_id }}</td>
+            <td>{{ u.user_name }}</td>
+                        <td>
+                {% for c in u.user_pass %}
+                *
+                    {% endfor %}
+                    </td>
+            <td>{{ u.user_type }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

@@ -1,0 +1,56 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('add_room') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">إضافة قاعة</h1>
+
+      <label class="lab">اسم القاعة</label>
+    <div class="form-floating">
+      <input type="text" autocomplete="off" class="form-control" name="rName" id="floatingInput" placeholder="اسم القاعة" required>
+      <label for="floatingInput">اسم القاعة</label>
+    </div>
+      <label class="lab">الطاقة الاستيعابية</label>
+    <div class="form-floating">
+      <input type="text" autocomplete="off" class="form-control" name="cap" id="floatingInput" placeholder="الطاقة الاستيعابية" required>
+      <label for="floatingInput">الطاقة الاستيعابية</label>
+    </div>
+             <label class="lab te">نوع القاعة</label>
+       <div class="term-r">
+      نظري<input type="radio" name="rType" class="term-r " id="t1" required value="نظري" checked>
+
+       عملي<input type="radio" name="rType" id="t2" class="term-r" required value="عملي">
+       </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">إضافة</button>
+  </form>
+        <article class="data">
+         {% if all_rooms != [] %}
+            <h2>القاعات</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                اسم القاعة
+            </th>
+        <th>
+                نوع القاعة
+            </th>
+         <th>
+                الطاقة الاستيعابية
+            </th>
+        {% for r in all_rooms %}
+            <tr>
+                <td>{{ r.room_id}}</td>
+            <td>{{ r.room_name }}</td>
+                <td>{{ r.room_type }}</td>
+            <td>{{ r.capacity}}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

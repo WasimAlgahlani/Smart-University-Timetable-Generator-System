@@ -1,0 +1,62 @@
+{% include 'header2.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('add_user') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">إضافة مستخدم</h1>
+
+      <label class="lab">اسم المستخدم</label>
+    <div class="form-floating">
+      <input type="text" autocomplete="off" class="form-control" name="uName" id="floatingInput" placeholder="اسم المستخدم" required>
+      <label for="floatingInput">اسم المستخدم</label>
+    </div>
+      <label class="lab">كلمة المرور</label>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="uPass" id="floatingPassword" placeholder="كلمة المرور" required>
+      <label for="floatingPassword">كلمة المرور</label>
+    </div>
+              <label class="lab">نوع المستخدم</label>
+    <div class="form-floating">
+      <select name="uType" class="form-control" id="floatingType">
+          <option>مستخدم عادي</option>
+          <option>admin</option>
+      </select>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">إضافة</button>
+  </form>
+        <article class="data">
+        {% if all_users != [] %}
+                    <h2>المستخدمون</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+            اسم المستخدم
+            </th>
+            <th>
+            كلمة المرور
+            </th>
+            <th>
+            نوع المستخدم
+            </th>
+        {% for u in all_users %}
+            <tr>
+                <td>{{ u.user_id }}</td>
+            <td>{{ u.user_name }}</td>
+                        <td>
+                {% for c in u.user_pass %}
+                *
+                    {% endfor %}
+                    </td>
+            <td>{{ u.user_type }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

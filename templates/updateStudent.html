@@ -1,0 +1,66 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('update_student') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">تعديل طلاب تخصص</h1>
+
+      <label class="lab">اسم التخصص</label>
+      <div class="form-floating">
+      <select name="mName" class="form-control" id="floatingType">
+          {% for m in all_majs %}
+          <option>{{ m.maj_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+  <label class="lab">المستوى</label>
+    <div class="form-floating">
+         <select name="lName" class="form-control" id="floatingType">
+          <option>1</option>
+             <option>2</option>
+             <option>3</option>
+             <option>4</option>
+      </select>
+    </div>
+  <label class="lab">عدد الطلاب</label>
+    <div class="form-floating">
+      <input type="text" autocomplete="off" class="form-control" name="num" id="floatingInput" placeholder="عدد الطلاب" required>
+      <label for="floatingInput">عدد الطلاب</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">تعديل</button>
+  </form>
+        <article class="data">
+        {% if all_stus != [] %}
+            <h2>طلاب التخصصات</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                التخصص
+            </th>
+         <th>
+                المستوى
+            </th>
+          <th>
+                عدد الطلاب
+            </th>
+        <tr>
+        {% for ms in all_stus %}
+                <td>{{ ms.stu_id }}</td>
+                {% for m in all_majs %}
+                    {% if m.major_id == ms.major %}
+                    <td>{{ m.maj_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ ms.level }}</td>
+            <td>{{ ms.number }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

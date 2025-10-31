@@ -1,0 +1,48 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('delete_dept') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">حذف قسم</h1>
+
+      <label class="lab">اسم القسم</label>
+      <div class="form-floating">
+      <select name="dName" class="form-control" id="floatingType">
+          {% for d in all_depts %}
+          <option>{{ d.dept_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">حذف</button>
+  </form>
+        <article class="data">
+        {% if all_depts != [] %}
+            <h2>الأقسام</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                الكلية
+            </th>
+          <th>
+                اسم القسم
+            </th>
+        <tr>
+        {% for d in all_depts %}
+                <td>{{ d.dept_id }}</td>
+                {% for c in all_colls %}
+                    {% if c.coll_id == d.coll %}
+                    <td>{{ c.coll_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ d.dept_name }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

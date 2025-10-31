@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html lang="ar" dir="rtl">
+<head>
+    <title>STGS</title>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="../static/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="../static/css/header.css" rel="stylesheet">
+</head>
+<body>
+<main class="con">
+        {% if table != [] %}
+        <h2 class="coll">جدول المحاضرات لكلية {{ college }}</h2>
+        {% for row in table %}
+            <table class="timetable print">
+            <th colspan="6">المستوى {{ row[0]["Groups"][0][-1] }}</th>
+            {% for row2 in row %}
+        <tr>
+
+              <td>  {{row2["Day"]}}</td>
+            <td> {{row2["Subject"]}}</td>
+                <td>{% for g in row2["Groups"] %}
+                    {{g}} -
+                     {% endfor %}</td>
+                <td>{{row2["Teacher"]}}</td>
+            <td>{{row2["assigned_time"]}}</td>
+            <td>{{row2["assigned_classroom"]}}</td>
+
+        </tr>
+        {% endfor %}
+            </table>
+            {% endfor %}
+    {% endif %}
+    <div class="prin hide">
+<form>
+    <button class="w-25 btn btn-lg btn-primary" type="submit" onClick="window.print()">طباعة</button>
+</form>
+    </div>
+
+</main>
+
+</body>
+</html>

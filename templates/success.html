@@ -1,0 +1,46 @@
+<!DOCTYPE>
+<html lang="ar" dir="rtl">
+  <head>
+      <title>STGS</title>
+          <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="../static/assets/bootstrap/css/bootstrap.min.css">
+      <link href="../static/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  </head>
+  <body>
+ <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" id="trigger" data-bs-target="#exampleModal" style="display: none">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+{#        <h5 class="modal-title" id="exampleModalLabel">خطأ</h5>#}
+{#        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
+      </div>
+      <div class="modal-body">
+        تمت العملية بنجاح.
+      </div>
+      <div class="modal-footer">
+          <form action="{{ url_for('update_room') }}" method="get">
+        <button  type="submit" class="btn btn-secondary" id="close" data-bs-dismiss="modal">إغلاق</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="../static/js/sidebars.js"></script>
+
+   <script>
+     let mo = document.getElementById("exampleModal");
+     mo.classList.add("show");
+     mo.style.display = "block";
+     mo.setAttribute("role", "dialog");
+  </script>
+
+  </body>
+</html>

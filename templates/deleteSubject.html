@@ -1,0 +1,64 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('delete_sub') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">حذف مادة</h1>
+   <label class="lab">اسم المادة</label>
+      <div class="form-floating">
+      <select name="sName" class="form-control" id="floatingType">
+          {% for s in all_subs %}
+          <option>{{ s.sub_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+   <label class="lab">اسم التخصص</label>
+      <div class="form-floating">
+      <select name="mName" class="form-control" id="floatingType">
+          {% for m in all_majors %}
+          <option>{{ m.maj_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">حذف</button>
+  </form>
+        <article class="data">
+        {% if all_subs != [] %}
+            <h2>المواد</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                التخصص
+            </th>
+          <th>
+                اسم المادة
+            </th>
+         <th>
+             المستوى
+            </th>
+         <th>
+                الترم
+            </th>
+        <tr>
+        {% for s in all_subs %}
+                <td>{{ s.sub_id }}</td>
+                {% for m in all_majors %}
+                    {% if m.major_id == s.maj %}
+                    <td>{{ m.maj_name}}</td>
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ s.sub_name }}</td>
+            <td>{{ s.level }}</td>
+            <td>{{ s.term }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

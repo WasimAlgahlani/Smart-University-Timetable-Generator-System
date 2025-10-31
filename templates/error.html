@@ -1,0 +1,32 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" id="trigger" data-bs-target="#exampleModal" style="display: none">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">خطأ</h5>
+{#        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
+      </div>
+      <div class="modal-body">
+        لم تتم العملية بنجاح.
+      </div>
+      <div class="modal-footer">
+          <form action="{{ url_for('add_major') }}" method="get">
+        <button  type="submit" class="btn btn-secondary" id="close" data-bs-dismiss="modal">إغلاق</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="../static/js/sidebars.js"></script>
+
+   <script>
+     let mo = document.getElementById("exampleModal");
+     mo.classList.add("show");
+     mo.style.display = "block";
+     mo.setAttribute("role", "dialog");
+  </scrip

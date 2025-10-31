@@ -1,0 +1,59 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('update_dept') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">تعديل قسم</h1>
+      <label class="lab">اسم القسم</label>
+      <div class="form-floating">
+      <select name="dName" class="form-control" id="floatingType">
+          {% for d in all_depts %}
+          <option>{{ d.dept_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+   <label class="lab">اسم الكلية الجديد</label>
+      <div class="form-floating">
+      <select name="cName" class="form-control" id="floatingType">
+          {% for c in all_colls %}
+          <option>{{ c.coll_name }}</option>
+          {% endfor %}
+      </select>
+    </div>
+    <div class="form-floating">
+      <input type="text" autocomplete="off" class="form-control" name="newName" id="floatingInput" placeholder="اسم القسم" required>
+      <label for="floatingInput">اسم القسم الجديد</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">تعديل</button>
+  </form>
+        <article class="data">
+        {% if all_depts != [] %}
+            <h2>الأقسام</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                الكلية
+            </th>
+          <th>
+                اسم القسم
+            </th>
+        <tr>
+        {% for d in all_depts %}
+                <td>{{ d.dept_id }}</td>
+                {% for c in all_colls %}
+                    {% if c.coll_id == d.coll %}
+                    <td>{{ c.coll_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ d.dept_name }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}

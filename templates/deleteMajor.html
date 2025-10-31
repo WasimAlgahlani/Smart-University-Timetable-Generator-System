@@ -1,0 +1,60 @@
+{% include 'header.html' %}
+
+<aside class="cont">
+<main class="form-signin w-50 m-auto">
+  <form action="{{ url_for('delete_major') }}" method="post">
+    <h1 class="h3 mb-3 fw-normal">حذف تخصص</h1>
+
+  <label class="lab">اسم التخصص</label>
+      <div class="form-floating">
+      <select name="mName" class="form-control" id="floatingType">
+          {% for m in all_majors%}
+              {% for d in all_depts%}
+                  {% if m.dept == d.dept_id %}
+          <option>{{ m.maj_name }}</option>
+                  {% endif %}
+                  {% endfor %}
+          {% endfor %}
+      </select>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">حذف</button>
+  </form>
+        <article class="data">
+        {% if all_majors != [] %}
+            <h2>التخصصات</h2>
+        <table class="tdata">
+            <th>
+            Id
+            </th>
+            <th>
+                الكلية
+            </th>
+          <th>
+                اسم القسم
+            </th>
+                  <th>
+                اسم التخصص
+            </th>
+        <tr>
+        {% for m in all_majors %}
+                <td>{{ m.major_id }}</td>
+                {% for c in all_colls %}
+                    {% if c.coll_id == m.coll %}
+                    <td>{{ c.coll_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+             {% for d in all_depts %}
+                    {% if d.dept_id == m.dept%}
+                    <td>{{ d.dept_name }}</td>
+                    {% endif %}
+                    {% endfor %}
+            <td>{{ m.maj_name }}</td>
+            </tr>
+        {% endfor %}
+            </table>
+    {% endif %}
+    </article>
+</main>
+
+</aside>
+{% include 'footer.html' %}
